@@ -64,7 +64,7 @@ public class MemberController {
 		member.setPassword(pwEncoder.encode(rawPw));
 		
 		int result = service.enrollMember(member);
-		String msg ="";
+		String msg =""; 
 		if(result > 0) {
 			msg="회원 가입 성공!";
 		}
