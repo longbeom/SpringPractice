@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo">
+	<insert id="insertDev" parameterType="dev">
+		INSERT INTO DEV VALUES(SEQ_DEV_NO.NEXTVAL, #{devName}, #{devAge}, #{devEmail}, #{devGender}, 
+		<!-- <foreach collection="devLang" item="lang" open="'" close="'" separator=",">
+			${lang}
+		</foreach> -->
+		#{devLang, typeHandler=strArray}
+		)
+	</insert>
+	
+
+	<resultMap type="dev" id="devMap">
+		<result column="devLang" property="devLang" typeHandler="strArray"/>
+	</resultMap>
+	<select id="selectDemoList" resultMap="devMap">
+		SELECT * FROM DEV ORDER BY devNo DESC
+	</select> 	
+	
+	<delete id="deleteDev" parameterType="_int">
+		DELETE FROM DEV WHERE devNo = #{no}
+	</delete>
+	
+	<select id="selectDev" parameterType="_int" resultMap="devMap">
+		SELECT * FROM DEV WHERE devNo = #{no}
+	</select>
+	
+	<update id="updateDev" parameterType="dev">
+		UPDATE DEV SET devName = #{devName}, devAge = #{devAge}, devEmail = #{devEmail}, devGender = #{devGender}, devLang = #{devLang, typeHandler=strArray}
+		WHERE devNo = #{devNo}
+	</update>
+</mapper>
