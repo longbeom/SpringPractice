@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
@@ -21,14 +22,17 @@ public class MemberController {
 	BCryptPasswordEncoder pwEncoder;
 	
 	@RequestMapping("/member/memberLogin.do")
-	public String login(Member member, Model model) {		
+//	public String login(Member member, Model model) {
+	public ModelAndView login(Member member, Model model) {
 		Member logined = service.login(member);
 		String msg = "";
+		ModelAndView mv = new ModelAndView();
 		if(logined != null) {
 			if(pwEncoder.matches(member.getPassword(), logined.getPassword())) {
 				msg = "로그인 성공!";
-				model.addAttribute("userId", logined.getUserId());
+//				model.addAttribute("userId", logined.getUserId());
 //				session.setAttribute("userId", logined.getUserId());
+				mv.addObject("userId",logined.getUserId());
 			} else {
 				msg = "비밀번호가 일치하지 않습니다..";
 			}
@@ -36,10 +40,13 @@ public class MemberController {
 		else {
 			msg = "존재하지 않는 아이디입니다..";
 		}
+
+//		model.addAttribute("msg", msg);
+		mv.addObject("msg", msg);
 		
-		model.addAttribute("msg", msg);
+		mv.setViewName("common/msg");
 		
-		return "common/msg";
+		return mv;
 	}
 	
 	@RequestMapping("member/memberLogout.do")
