@@ -25,7 +25,7 @@ public class MemberController {
 		Member logined = service.login(member);
 		String msg = "";
 		if(logined != null) {
-			if(logined.getPassword().equals(member.getPassword())) {
+			if(pwEncoder.matches(member.getPassword(), logined.getPassword())) {
 				msg = "로그인 성공!";
 				model.addAttribute("userId", logined.getUserId());
 //				session.setAttribute("userId", logined.getUserId());
