@@ -8,7 +8,7 @@
 <body>
 	<script>
 		alert('${msg}');
-		location.href="${pageContext.request.contextPath}";
+		location.href="${pageContext.request.contextPath}/${loc}";
 	</script>
 </body>
 </html>

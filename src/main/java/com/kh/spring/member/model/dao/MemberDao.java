@@ -6,4 +6,6 @@ public interface MemberDao {
 
 	Member login(Member member);
 	int enrollMember(Member member);
+	Member loginedMember(String userId);
+	int memberUpdate(Member member);
 }

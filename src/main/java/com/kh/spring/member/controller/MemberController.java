@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -62,7 +63,7 @@ public class MemberController {
 	
 	@RequestMapping("/member/enrollView.do")
 	public String enrollView() {		
-		return "memberEnroll";
+		return "member/memberEnroll";
 	}
 	
 	@RequestMapping("/member/memberEnrollEnd.do")
@@ -80,5 +81,32 @@ public class MemberController {
 		}
 		model.addAttribute("msg", msg);
 		return "common/msg";
+	}
+	
+	@RequestMapping("/member/myPage.do")
+	public ModelAndView myPage(@ModelAttribute("userId") String userId) {
+		ModelAndView mv = new ModelAndView();
+		
+		Member member = service.loginedMember(userId);		
+		mv.addObject("member", member);
+		mv.setViewName("member/myPage");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/member/memberUpdate.do")
+	public ModelAndView memberUpdate(Member member) {
+		ModelAndView mv = new ModelAndView();
+		int result = service.memberUpdate(member);
+		
+		String msg = "";
+		if (result > 0) msg = "수정 성공!";
+		else msg = "수정 실패...";
+		String loc = ("/member/myPage.do");
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
 	}
 }

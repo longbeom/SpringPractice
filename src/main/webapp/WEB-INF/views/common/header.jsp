@@ -67,7 +67,7 @@
 					</c:if>
 					<c:if test="${sessionScope.userId != null }">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="button"
-							onclick="">마이페이지</button>
+							onclick="location.href='${path}/member/myPage.do'">마이페이지</button>
 						&nbsp;
 						<button class="btn btn-outline-success my-2 my-sm-0" type="button"
 							onclick="location.href='${path}/member/memberLogout.do'">로그아웃</button>

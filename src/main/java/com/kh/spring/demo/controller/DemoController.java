@@ -22,7 +22,6 @@ public class DemoController {
 	@RequestMapping("/demo/demo.do")
 	public String demo() {
 		/*service.test();*/
-		System.out.println("/demo/demo.do/controller실행!");
 		//prefix+return값+suffix
 		return "demo/demo";
 	}

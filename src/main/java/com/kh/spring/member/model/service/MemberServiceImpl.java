@@ -21,4 +21,14 @@ public class MemberServiceImpl implements MemberService {
 	public int enrollMember(Member member) {		
 		return dao.enrollMember(member);
 	}
+	
+	@Override
+	public Member loginedMember(String userId) {
+		return dao.loginedMember(userId);
+	}
+
+	@Override
+	public int memberUpdate(Member member) {
+		return dao.memberUpdate(member);
+	}	
 }
