@@ -1,5 +1,6 @@
 package com.kh.spring.member.controller;
 
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,6 +34,7 @@ public class MemberController {
 		// 로그 찍어보기
 		logger.debug("로그인 제대로 들어옴!");
 		logger.debug("userId : " + member.getUserId() + "password : " + member.getPassword());
+		
 		
 		Member logined = service.login(member);
 		logger.debug("로그인 결과 : " + logined);
