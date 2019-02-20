@@ -54,9 +54,10 @@
 							aria-expanded="false">demo</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="${path }/demo/demo.do">Dev 등록</a>
-								<a class="dropdown-item" href="${path }/demo/selectDemoList.do">Dev
-									목록</a>
-							</div></li>
+								<a class="dropdown-item" href="${path }/demo/selectDemoList.do">Dev목록</a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="${path }/memo/memo.do">메모</a></li>
 					</ul>
 					<c:if test="${sessionScope.userId == null }">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="button"
