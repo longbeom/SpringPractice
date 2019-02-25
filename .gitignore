@@ -1,0 +1,16 @@
+.classpath
+.factorypath
+.buildpath
+.target
+.target/
+.tern-project
+.springBeans
+.recommenders/
+@@ -126,6 +126,6 @@ $RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+.root-context.xml
+root-context*
+# End of https://www.gitignore.io/api/windows,eclipse,java-web
+# 
