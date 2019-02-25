@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- AOP 적용 -->
+	
+	<!-- 1. AOP 적용 공통 모듈 등록 (객체 등록) -->
+	<!-- <bean id="loggerAspect" class="com.kh.spring.common.aop.LoggerAspect"/> -->
+
+	<!-- 2. AOP 적용 설정 -->
+	<!-- <aop:config>
+		<aop:aspect id="loggerAspect" ref="loggerAspect">
+			<aop:pointcut expression="execution(* com.kh.spring..*(..))" id="pcAll"/>
+			<aop:pointcut expression="execution(* com.kh.spring.demo..*(..))" id="pcAll"/>
+			<aop:around method="loggerAdvice" pointcut-ref="pcAll"/>
+			<aop:before method="beforeAd" pointcut-ref="pcAll"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	
+	<!-- 어노테이션을 이용한 AOP 적용 -->
+	<aop:aspectj-autoproxy/>
+	
+</beans>

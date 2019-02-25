@@ -1,5 +1,7 @@
 package com.kh.spring.member.controller;
 
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import com.kh.spring.member.model.vo.Member;
 @SessionAttributes("userId") // Object
 @Controller
 public class MemberController {
+	private Logger logger = Logger.getLogger(MemberController.class);
 
 	@Autowired
 	MemberService service;
@@ -24,10 +27,18 @@ public class MemberController {
 	
 	@RequestMapping("/member/memberLogin.do")
 //	public String login(Member member, Model model) {
-	public ModelAndView login(Member member, Model model) {
-		Member logined = service.login(member);
+	public ModelAndView login(Member member, Model model) {		
 		String msg = "";
 		ModelAndView mv = new ModelAndView();
+		
+		// 로그 찍어보기
+		logger.debug("로그인 제대로 들어옴!");
+		logger.debug("userId : " + member.getUserId() + "password : " + member.getPassword());
+		
+		
+		Member logined = service.login(member);
+		logger.debug("로그인 결과 : " + logined);
+		
 		if(logined != null) {
 			if(pwEncoder.matches(member.getPassword(), logined.getPassword())) {
 				msg = "로그인 성공!";

@@ -22,6 +22,20 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.kh.spring" />
+	<interceptors>
+		<interceptor>
+			<!-- <mapping path="/**"/> -->
+			<!-- <mapping path="/member/login.do"/> -->
+			<mapping path="/member/*.do"/>
+			<!-- <exclude-mapping path="/board/*"/> --> <!-- board 빼고 다 -->
+			<beans:bean id="loggerInterceptor" class="com.kh.spring.common.LoggerInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/demo/*.do"/>
+			<beans:bean id="Interceptor" class="com.kh.spring.common.Interceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 	
